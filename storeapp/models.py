@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Book(models.Model):
-    class BookType(Enum):
+    class BookType(models.TextChoices):
         UNDEFINED = 'Undefined'
         ADVENTURE = 'Adventure'
         BIOGRAPHY = 'Biography'
