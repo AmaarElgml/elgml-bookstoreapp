@@ -20,6 +20,9 @@ from storeapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # 0 POST Many books once
+    path('fbv/', views.fbv_list),
+
     # 1 GET and POST Books
     path('books/', views.BooksListGenerics.as_view()),
 
