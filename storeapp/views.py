@@ -5,28 +5,35 @@ from storeapp.models import Book, News, Author, AppAdmin
 from storeapp.serializer import BookSerializer, AuthorSerializer, NewsSerializer, AppAdminSerializer
 
 
-class AuthorListGenerics(generics.ListCreateAPIView):
-    queryset = Author.objects.all()
+class AuthorViewSet(viewsets.ModelViewSet):
+    model = Author
     serializer_class = AuthorSerializer
-
-
-class AuthorPKGenerics(generics.RetrieveUpdateDestroyAPIView):
     queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
+
+    # def create(self, request, *arg, **kwarg):
+    #     authors_list = []
+    #     for row in request.data:
+    #         author = Author.objects.create(name=row["name"], image=row["image"], booksNum=row["booksNum"])
+    #         author.save()
+    #         serializer = AuthorSerializer(author)
+    #         authors_list.append(serializer)
+    #     return Response(authors_list)
 
 
-class BooksListGenerics(generics.ListCreateAPIView):
-    queryset = Book.objects.all()
+class BookViewSet(viewsets.ModelViewSet):
+    model = Book
     serializer_class = BookSerializer
-    # authentication_classes = [TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
-
-
-class BooksPKGenerics(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
-    serializer_class = BookSerializer
-    # authentication_classes = [TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
+
+    # def create(self, request, *arg, **kwarg):
+    #     books_list = []
+    #     for row in request.data:
+    #         book = Book.objects.create(name=row["name"], author=row["author"], background=row["background"],
+    #                                    price=row["price"], poster=row["poster"], category=row["category"])
+    #         book.save()
+    #         serializer = BookSerializer(book)
+    #         books_list.append(serializer)
+    #     return Response(books_list)
 
 
 class NewsViewSet(viewsets.ModelViewSet):
@@ -34,49 +41,29 @@ class NewsViewSet(viewsets.ModelViewSet):
     serializer_class = NewsSerializer
     queryset = News.objects.all()
 
-    def create(self, request, *arg, **kwarg):
-        # batch_size = 500
-        # for row in request.data:
-        #     news = News()
-        #     news.title = row["title"]
-        #     news.body = row["title"]
-        #     news.date = row["title"]
-        #     news.type = row["title"]
-        # News.objects.bulk_create(news_list, batch_size)
-
-        news_list = []
-        for row in request.data:
-            new = News.objects.create(title=row["title"], body=row["body"], date=row["date"], type=row["type"])
-            new.save()
-            serializer = NewsSerializer(new)
-            news_list.append(serializer)
-        return Response(news_list)
-
-    # def get_serializer(self, *args, **kwargs):
-    #     if 'data' in kwargs:
-    #         data = kwargs['data']
-    #
-    #         if isinstance(data, list):
-    #             kwargs['many'] = True
-    #
-    #     return super().get_serializer(*args, **kwargs)
+    # def create(self, request, *arg, **kwarg):
+    #     news_list = []
+    #     for row in request.data:
+    #         new = News.objects.create(title=row["title"], body=row["body"], date=row["date"], type=row["type"])
+    #         new.save()
+    #         serializer = NewsSerializer(new)
+    #         news_list.append(serializer)
+    #     return Response(news_list)
 
 
-# class NewsListGenerics(generics.ListCreateAPIView):
-#     queryset = News.objects.all()
-#     serializer_class = NewsSerializer
-#
-#
-# class NewsPKGenerics(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = News.objects.all()
-#     serializer_class = NewsSerializer
-
-
-class AppAdminListGenerics(generics.ListCreateAPIView):
-    queryset = AppAdmin.objects.all()
+class AppAdminViewSet(viewsets.ModelViewSet):
+    model = AppAdmin
     serializer_class = AppAdminSerializer
-
-
-class AppAdminPKGenerics(generics.RetrieveUpdateDestroyAPIView):
     queryset = AppAdmin.objects.all()
-    serializer_class = AppAdminSerializer
+
+    # def create(self, request, *arg, **kwarg):
+    #     appadmins_list = []
+    #     for row in request.data:
+    #         appadmins = AppAdmin.objects.create(name=row["name"], image=row["image"], role=row["role"],
+    #                                             email=row["email"],
+    #                                             password=row["password"], phoneNumber=row["phoneNumber"],
+    #                                             online=row["online"])
+    #         appadmins.save()
+    #         serializer = AppAdminSerializer(appadmins)
+    #         appadmins_list.append(serializer)
+    #     return Response(appadmins_list)

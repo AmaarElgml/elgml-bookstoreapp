@@ -4,7 +4,7 @@ from django.db import models
 class Author(models.Model):
     name = models.CharField(max_length=50)
     image = models.TextField()
-    booksNum = models.IntegerField()
+    booksNum = models.CharField(max_length=10)
     objects = models.QuerySet()
 
 
