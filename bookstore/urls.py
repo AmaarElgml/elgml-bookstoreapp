@@ -21,7 +21,7 @@ from storeapp import views
 from storeapp.views import NewsViewSet
 
 router = DefaultRouter()
-router.register(r'news', NewsViewSet)
+router.register(r'news', NewsViewSet, basename='news')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
